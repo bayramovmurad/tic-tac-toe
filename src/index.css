@@ -1,0 +1,92 @@
+body {
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.app {
+  text-align: center;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.player-selection button{
+  margin: 0px 10px;
+  width: 120px;
+  height: 100px;
+ 
+
+}
+
+.player-selection button span{
+
+  font-size: 20px;
+  font-style:unset;
+  
+}
+
+.player-selection button.selected {
+  background-color: #4caf50;
+  color: white;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-gap: 5px;
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+  font-size: 2em;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  outline: none;
+}
+
+.square:hover {
+  background-color: #e0e0e0;
+}
+
+.winner-screen {
+  margin-top: 20px;
+}
+
+.winner-screen p {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.winner-screen button {
+  font-size: 1em;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+.tie-message button{
+  font-size: 1em;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+.winner-screen button:hover {
+  background-color: #45a049;
+}
+
