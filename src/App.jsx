@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Board from "./Board";
-import WinnerScreen from "./WinnerScreen";
+import Board from "./Components/Board";
+import WinnerScreen from "./Components/WinnerScreen";
 import clickSound from "./sound/click.mp3";
 import winSound from "./sound/win.wav";
 import restartSound from "./sound/restart.wav";
+import ResartButton from "./Components/ResartButton";
+import SelectPlayer from "./Components/SelectPlayer";
 
 const App = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
@@ -30,11 +32,7 @@ const App = () => {
     return board.every((square) => square !== null);
   };
 
-  const selectPlayer = (selectedPlayer) => {
-    if (!player) {
-      setPlayer(selectedPlayer);
-    }
-  };
+
 
   useEffect(() => {
     const winningPatterns = [
@@ -68,16 +66,10 @@ const App = () => {
     const newBoard = board.slice();
     newBoard[index] = player;
     setBoard(newBoard);
-    setPlayer(player === "X" ? "O" : "X");
+    setPlayer(player === "❌" ? "🟡" : "❌");
     clickPlay();
   };
 
-  const restartGame = () => {
-    setBoard(Array(9).fill(null));
-    setPlayer(null);
-    setWinner(null);
-    gameRestart();
-  };
 
   return (
     <div className="app">
@@ -88,27 +80,14 @@ const App = () => {
           {winner === "Tie" ? (
             <div className="tie-message">
               <p>No one wins, it's a tie!</p>
-              <button onClick={restartGame}>Restart</button>
+              <ResartButton setBoard={setBoard} setPlayer={setPlayer} setWinner={setWinner} gameRestart={gameRestart} />
             </div>
           ) : (
-            winner && <WinnerScreen winner={winner} onRestart={restartGame} />
+            winner && <WinnerScreen winner={winner} setBoard={setBoard} setPlayer={setPlayer} setWinner={setWinner} gameRestart={gameRestart} />
           )}
         </>
       ) : (
-        <div className="player-selection">
-          <button
-            className={player === "X" ? "selected" : ""}
-            onClick={() => selectPlayer("X")}
-          >
-            Select X
-          </button>
-          <button
-            className={player === "O" ? "selected" : ""}
-            onClick={() => selectPlayer("O")}
-          >
-            Select O
-          </button>
-        </div>
+        <SelectPlayer player={player} setPlayer={setPlayer} />
       )}
     </div>
   );
